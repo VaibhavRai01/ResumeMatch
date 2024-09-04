@@ -3,3 +3,4 @@ pdfplumber
 spacy
 scikit-learn
 python-dotenv
+flask_sqlalchemy
