@@ -2,3 +2,4 @@ Flask
 pdfplumber
 spacy
 scikit-learn
+python-dotenv
