@@ -3,18 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume Matcher</title>
+    <title>Home</title>
 </head>
 <body>
-    <h1>Upload Resumes and Job Description</h1>
-    <form action="/" method="POST" enctype="multipart/form-data">
-        <label for="job_description">Upload Job Description (PDF):</label><br>
-        <input type="file" name="job_description" accept=".pdf" required><br><br>
-
-        <label for="resumes">Upload Resumes (PDF, Multiple):</label><br>
-        <input type="file" name="resumes" accept=".pdf" multiple required><br><br>
-
-        <input type="submit" value="Submit">
-    </form>
+    <h2>Welcome to Resume Match</h2>
+    {% if 'username' in session %}
+        <p>Hello, {{ session['username'] }}!</p>
+        <a href="{{ url_for('logout') }}">Logout</a> | 
+        <a href="{{ url_for('upload_files') }}">Upload Resumes</a>
+    {% else %}
+        <a href="{{ url_for('signup') }}">Signup</a> | 
+        <a href="{{ url_for('login') }}">Login</a>
+    {% endif %}
 </body>
 </html>
