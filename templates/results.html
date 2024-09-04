@@ -3,15 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume Matcher - Results</title>
+    <title>Results</title>
 </head>
 <body>
-    <h1>Resume Similarity Results</h1>
-    <ul>
-        {% for resume, similarity in results %}
-            <li>{{ resume }} - Similarity: {{ similarity }}%</li>
+    <h2>Resume Match Results</h2>
+    <table border="1">
+        <tr>
+            <th>Resume</th>
+            <th>Similarity Score</th>
+        </tr>
+        {% for result in results %}
+        <tr>
+            <td>{{ result[0] }}</td>
+            <td>{{ result[1] }}%</td>
+        </tr>
         {% endfor %}
-    </ul>
-    <a href="/">Go Back</a>
+    </table>
+    <a href="{{ url_for('logout') }}">Logout</a> 
+    <a href="{{ url_for('home') }}">Home</a> 
 </body>
 </html>
