@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <!-- Design by foolishdeveloper.com -->
     <title>Login</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -143,7 +144,15 @@
     </div>
     <form method="POST" action="/login">
         <h3>Login Here</h3>
-
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
         <label for="username">Username</label><br>
         <input type="text" id="username" name="username" required><br><br>
         <label for="password">Password</label><br>
