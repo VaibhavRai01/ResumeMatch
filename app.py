@@ -84,7 +84,7 @@ def signup():
         db.session.commit()
 
         flash('Signup successful! Please login.')
-        return redirect(url_for('login'))
+        
 
     return render_template('signup.html')
 
@@ -102,11 +102,11 @@ def login():
         if user and check_password_hash(user.password, password):
             session['user_id'] = user.id
             session['username'] = user.username
-            flash('Login successful!')
+            
             return render_template('index.html')
         else:
             flash('Invalid username or password')
-            return redirect(url_for('login'))
+           
 
     return render_template('login.html')
 
@@ -115,14 +115,13 @@ def login():
 def logout():
     session.pop('user_id', None)
     session.pop('username', None)
-    flash('You have been logged out.')
+    
     return redirect(url_for('home'))
 
 # Upload files and perform resume matching
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_files():
     if 'user_id' not in session:
-        flash('You need to login first.')
         return redirect(url_for('login'))
 
     if request.method == 'POST':
@@ -166,7 +165,7 @@ def upload_files():
         return render_template('results.html', results=sorted_results)
 
     return render_template('upload.html')
-
+    
 # Main function to run the app
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000,debug=True)
