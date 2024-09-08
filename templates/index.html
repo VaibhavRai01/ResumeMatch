@@ -66,6 +66,15 @@
     <!-- Main Content -->
     <div class="container">
         <h2>Welcome to Resume Match</h2>
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
         {% if 'username' in session %}
             <p>Hello, {{ session['username'] }}!</p>
             <div class="auth-links">
