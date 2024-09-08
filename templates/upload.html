@@ -81,6 +81,15 @@
     <!-- Main Content -->
     <div class="container">
         <h2>Upload Job Description and Resumes</h2>
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
         <form method="POST" action="/upload" enctype="multipart/form-data">
             <label for="job_description">Job Description (PDF)</label><br>
             <input type="file" id="job_description" name="job_description" required><br><br>
